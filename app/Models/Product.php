@@ -10,7 +10,7 @@ class Product extends Model {
         $sql = "SELECT sp.*, dm.ten as ten_dm 
                 FROM tbl_sanpham sp 
                 LEFT JOIN tbl_danhmuc dm ON sp.id_dm = dm.id 
-                ORDER BY sp.ten";
+                ORDER BY sp.id";
         
         return $this->query($sql);
     }
@@ -77,7 +77,7 @@ class Product extends Model {
             $types .= "i";
         }
         
-        $sql .= " ORDER BY sp.ten";
+        $sql .= " ORDER BY sp.id";
         
         if (empty($params)) {
             return $this->getAllProducts();
@@ -91,7 +91,7 @@ class Product extends Model {
                 FROM tbl_sanpham sp 
                 LEFT JOIN tbl_danhmuc dm ON sp.id_dm = dm.id 
                 WHERE sp.id_dm = ? 
-                ORDER BY sp.ten";
+                ORDER BY sp.id";
         
         return $this->query($sql, [$categoryId], "i");
     }
